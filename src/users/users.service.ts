@@ -21,8 +21,12 @@ export class UsersService {
     return this.userRepository.find();
   }
 
-  findOne(id: number): Promise<User | null> {
-    return this.userRepository.findOneBy({ id });
+  findOne(userEmail: string): Promise<any | undefined> {
+    return this.userRepository.find({
+      where: {
+        email: userEmail,
+      },
+    });
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
