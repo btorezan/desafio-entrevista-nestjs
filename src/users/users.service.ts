@@ -26,11 +26,7 @@ export class UsersService {
   }
 
   findOneByEmail(userEmail: string): Promise<User | undefined> {
-    return this.userRepository.findOne({
-      where: {
-        email: userEmail,
-      },
-    });
+    return this.userRepository.findOneBy({ email: userEmail });
   }
 
   findOne(id: number): Promise<User | undefined> {

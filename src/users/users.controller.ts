@@ -10,8 +10,11 @@ import {
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { Roles } from './roles.decorator';
+import { Role } from 'src/enums/roles.enum';
 
 @Controller('users')
+@Roles(Role.Admin)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
@@ -21,6 +24,7 @@ export class UsersController {
   }
 
   @Get()
+  @Roles(Role.User)
   findAll() {
     return this.usersService.findAll();
   }
