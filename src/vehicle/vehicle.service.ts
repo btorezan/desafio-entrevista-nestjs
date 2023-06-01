@@ -25,6 +25,12 @@ export class VehicleService {
     return this.vehicleRepository.findOneBy({ id });
   }
 
+  findOneByPlate(plate: string): Promise<Vehicle | null> {
+    return this.vehicleRepository.findOneBy({
+      plate: plate,
+    });
+  }
+
   update(id: number, updateVehicleDto: UpdateVehicleDto) {
     return this.vehicleRepository.update(id, updateVehicleDto);
   }

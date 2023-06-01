@@ -8,6 +8,7 @@ import { VehicleModule } from './vehicle/vehicle.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { APP_GUARD } from '@nestjs/core';
+import { ManagerModule } from './manager/manager.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { APP_GUARD } from '@nestjs/core';
     }),
     AuthModule,
     UsersModule,
+    ManagerModule,
   ],
   controllers: [AppController],
   providers: [AppService, { provide: APP_GUARD, useClass: RolesGuard }],
