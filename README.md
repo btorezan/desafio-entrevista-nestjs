@@ -17,6 +17,6 @@ Parking Lot é uma API para gerenciamento de estacionamento de empresas. Tem com
 ## Entidades
 
 ## Documentação
-Após a execução do projeto, acessar [http://localhost:3000/api]<http://localhost:3000/api>
+Após a execução do projeto, acessar <http://localhost:3000/api>
 
 ##
