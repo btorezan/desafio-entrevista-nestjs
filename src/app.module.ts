@@ -9,6 +9,7 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { APP_GUARD } from '@nestjs/core';
 import { ManagerModule } from './manager/manager.module';
+import { ParkingModule } from './parking/parking.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { ManagerModule } from './manager/manager.module';
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
+      port: 33006,
       username: 'root',
       password: 'root',
       database: 'drconsulta',
@@ -26,6 +28,7 @@ import { ManagerModule } from './manager/manager.module';
     AuthModule,
     UsersModule,
     ManagerModule,
+    ParkingModule,
   ],
   controllers: [AppController],
   providers: [AppService, { provide: APP_GUARD, useClass: RolesGuard }],
