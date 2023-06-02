@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateVehicleDto } from './dto/create-vehicle.dto';
 import { UpdateVehicleDto } from './dto/update-vehicle.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -32,8 +32,19 @@ export class VehicleService {
     return this.vehicleRepository.find();
   }
 
-  findOne(id: number): Promise<Vehicle | null> {
-    return this.vehicleRepository.findOneBy({ id });
+  findOne(id: number) {
+    try {
+      const vehicle = this.vehicleRepository
+        .createQueryBuilder('vehicle')
+        .leftJoinAndSelect('vehicle.company', 'company')
+        .leftJoinAndSelect('vehicle.parkingEvents', 'parkingEvent')
+        .where('vehicle.id = :id', { id })
+        .getOne();
+
+      if (!vehicle) {
+        throw new NotFoundException();
+      }
+    } catch (error) {}
   }
 
   findOneByPlate(plate: string): Promise<Vehicle | null> {

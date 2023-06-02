@@ -13,6 +13,6 @@ export class ParkingController {
 
   @Put('/exit/:id')
   exit(@Param('id') id: string) {
-    return this.parkingService.registryExit(+id);
+    return this.parkingService.registryExit(id);
   }
 }

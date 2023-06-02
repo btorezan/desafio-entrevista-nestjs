@@ -14,10 +14,10 @@ export class ParkingService {
     private readonly parkingLotService: ParkingLotService,
   ) {}
 
-  registryEntry(createParkingDto: CreateParkingDto) {
+  async registryEntry(createParkingDto: CreateParkingDto) {
     try {
       const { vehicleId, parkingLotId, vehicleType } = createParkingDto;
-      const vehicle = this.vehicleService.findOne(+vehicleId);
+      const vehicle = await this.vehicleService.findOne(+vehicleId);
       const parkingLot = this.parkingLotService.findOne(+parkingLotId);
 
       const entry = this.parkingRepository.create({
