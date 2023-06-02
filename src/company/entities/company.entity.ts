@@ -4,6 +4,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -25,6 +26,8 @@ export class Company {
   motorcycleSpots: number;
   @Column()
   carSpots: number;
+  @OneToMany(() => Vehicle, (Vehicle) => Vehicle.company)
+  vehicles: Vehicle[];
   @OneToOne(() => ParkingLot, (parkingLot) => parkingLot.company)
   parkingLot: ParkingLot;
   @CreateDateColumn()
