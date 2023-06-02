@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class CreateVehicleDto {
   @IsString()
@@ -7,6 +7,9 @@ export class CreateVehicleDto {
   @IsString()
   @IsNotEmpty()
   model: string;
+  @IsNumber()
+  @IsNotEmpty()
+  companyId: number;
   @IsString()
   @IsNotEmpty()
   color: string;

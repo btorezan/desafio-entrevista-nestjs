@@ -1,6 +1,13 @@
 import { Company } from 'src/company/entities/company.entity';
-import { VechicleType } from 'src/enums/vehicletype.enum';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity()
 export class Vehicle {
@@ -11,11 +18,16 @@ export class Vehicle {
   @Column()
   model: string;
   @ManyToOne(() => Company, (company) => company.vehicles)
+  @JoinColumn()
   company: Company;
   @Column()
   color: string;
   @Column()
   plate: string;
   @Column()
-  type: VechicleType.car | VechicleType.moto;
+  type: string;
+  @CreateDateColumn()
+  createdAt: Date;
+  @UpdateDateColumn()
+  updatedAt: Date;
 }

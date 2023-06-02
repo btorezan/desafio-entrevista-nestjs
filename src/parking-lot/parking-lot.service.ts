@@ -5,9 +5,10 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { ParkingLot } from './entities/parking-lot.entity';
 import { Repository } from 'typeorm';
 import { Role } from 'src/enums/roles.enum';
+import { Roles } from 'src/users/roles.decorator';
 
 @Injectable()
-@Role('admin')
+@Roles(Role.Admin)
 export class ParkingLotService {
   constructor(
     @InjectRepository(ParkingLot)

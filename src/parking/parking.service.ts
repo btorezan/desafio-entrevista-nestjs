@@ -1,26 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { CreateParkingDto } from './dto/create-parking.dto';
 import { UpdateParkingDto } from './dto/update-parking.dto';
+import { VehicleService } from 'src/vehicle/vehicle.service';
+import { ParkingLotService } from 'src/parking-lot/parking-lot.service';
 
 @Injectable()
 export class ParkingService {
-  create(createParkingDto: CreateParkingDto) {
-    return 'This action adds a new parking';
-  }
-
-  findAll() {
-    return `This action returns all parking`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} parking`;
-  }
-
-  update(id: number, updateParkingDto: UpdateParkingDto) {
-    return `This action updates a #${id} parking`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} parking`;
-  }
+  constructor(
+    private readonly parkingRepository: Repository<Parking>,
+    private readonly vehicleService: VehicleService,
+    private readonly parkingLotService: ParkingLotService,
+  ) { }
+  
+  registryEntry(entryDto:E  ){}
 }

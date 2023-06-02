@@ -8,10 +8,8 @@ import { VehicleModule } from './vehicle/vehicle.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { APP_GUARD } from '@nestjs/core';
-import { ManagerModule } from './manager/manager.module';
 import { ParkingModule } from './parking/parking.module';
 import { ParkingLotModule } from './parking-lot/parking-lot.module';
-import { ParkingModule } from './parking/parking.module';
 
 @Module({
   imports: [
@@ -20,7 +18,7 @@ import { ParkingModule } from './parking/parking.module';
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
-      port: 33006,
+      port: 3306,
       username: 'root',
       password: 'root',
       database: 'drconsulta',
@@ -29,7 +27,6 @@ import { ParkingModule } from './parking/parking.module';
     }),
     AuthModule,
     UsersModule,
-    ManagerModule,
     ParkingModule,
     ParkingLotModule,
   ],
