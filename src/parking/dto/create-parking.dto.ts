@@ -1,1 +1,15 @@
-export class CreateParkingDto {}
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { VechicleType } from 'src/enums/vehicletype.enum';
+import { DeepPartial } from 'typeorm';
+
+export class CreateParkingDto {
+  @IsNumber()
+  @IsNotEmpty()
+  parkingLotId: number;
+  @IsString()
+  @IsNotEmpty()
+  vehicleId: number;
+  @IsString()
+  @IsNotEmpty()
+  vehicleType: DeepPartial<VechicleType>;
+}

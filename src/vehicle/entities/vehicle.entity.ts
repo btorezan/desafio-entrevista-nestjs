@@ -1,10 +1,12 @@
 import { Company } from 'src/company/entities/company.entity';
+import { Parking } from 'src/parking/entities/parking.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -20,6 +22,9 @@ export class Vehicle {
   @ManyToOne(() => Company, (company) => company.vehicles)
   @JoinColumn()
   company: Company;
+  @OneToMany(() => Parking, (parking) => parking.vehicle)
+  @JoinColumn()
+  parking: Parking[];
   @Column()
   color: string;
   @Column()
