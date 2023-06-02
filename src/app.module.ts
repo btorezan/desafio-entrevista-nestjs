@@ -10,6 +10,8 @@ import { UsersModule } from './users/users.module';
 import { APP_GUARD } from '@nestjs/core';
 import { ManagerModule } from './manager/manager.module';
 import { ParkingModule } from './parking/parking.module';
+import { ParkingLotModule } from './parking-lot/parking-lot.module';
+import { ParkingModule } from './parking/parking.module';
 
 @Module({
   imports: [
@@ -29,6 +31,7 @@ import { ParkingModule } from './parking/parking.module';
     UsersModule,
     ManagerModule,
     ParkingModule,
+    ParkingLotModule,
   ],
   controllers: [AppController],
   providers: [AppService, { provide: APP_GUARD, useClass: RolesGuard }],

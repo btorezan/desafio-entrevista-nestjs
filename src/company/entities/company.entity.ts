@@ -1,4 +1,13 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { ParkingLot } from 'src/parking-lot/entities/parking-lot.entity';
+import { Vehicle } from 'src/vehicle/entities/vehicle.entity';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity()
 export class Company {
@@ -11,9 +20,15 @@ export class Company {
   @Column()
   address: string;
   @Column()
-  tel: string;
+  phone: string;
   @Column()
-  motorcycleSpaces: number;
+  motorcycleSpots: number;
   @Column()
-  carSpaces: number;
+  carSpots: number;
+  @OneToOne(() => ParkingLot, (parkingLot) => parkingLot.company)
+  parkingLot: ParkingLot;
+  @CreateDateColumn()
+  createdAt: Date;
+  @UpdateDateColumn()
+  updatedAt: Date;
 }
