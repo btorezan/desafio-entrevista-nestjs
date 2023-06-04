@@ -5,7 +5,7 @@ import { DeepPartial } from 'typeorm';
 export class CreateParkingDto {
   @IsNumber()
   @IsNotEmpty()
-  parkingLotId: number;
+  id: number;
   @IsString()
   @IsNotEmpty()
   vehicleId: number;

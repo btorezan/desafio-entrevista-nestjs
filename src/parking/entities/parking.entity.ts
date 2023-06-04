@@ -1,12 +1,7 @@
+import { VechicleType } from 'src/enums/vehicletype.enum';
 import { ParkingLot } from 'src/parking-lot/entities/parking-lot.entity';
 import { Vehicle } from 'src/vehicle/entities/vehicle.entity';
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 export class Parking {
   @PrimaryGeneratedColumn()
@@ -14,10 +9,11 @@ export class Parking {
   @ManyToOne(() => ParkingLot, (parkingLot) => parkingLot.parking)
   parkingLot: ParkingLot;
   @ManyToOne(() => Vehicle, (vehicle) => vehicle.parking)
-  @JoinColumn()
   vehicle: Vehicle;
   @Column()
-  dateTimeEntry: Date;
+  vehicleType: VechicleType.car | VechicleType.moto;
   @Column()
+  dateTimeEntry: Date;
+  @Column({ default: null })
   dateTimeExit: Date;
 }

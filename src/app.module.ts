@@ -10,20 +10,22 @@ import { UsersModule } from './users/users.module';
 import { APP_GUARD } from '@nestjs/core';
 import { ParkingModule } from './parking/parking.module';
 import { ParkingLotModule } from './parking-lot/parking-lot.module';
-
+import * as dotenv from 'dotenv';
+dotenv.config();
 @Module({
   imports: [
     CompanyModule,
     VehicleModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: 'root',
-      database: 'drconsulta',
+      host: process.env.DATABASE_HOST,
+      port: Number(process.env.DATABASE_PORT),
+      username: process.env.DATABASE_USERNAME,
+      password: process.env.DATABASE_PASSWORD,
+      database: process.env.DATABASE_NAME,
       autoLoadEntities: true,
       synchronize: true,
+      dropSchema: true,
     }),
     AuthModule,
     UsersModule,

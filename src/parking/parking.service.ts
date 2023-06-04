@@ -1,11 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { CreateParkingDto } from './dto/create-parking.dto';
-import { UpdateParkingDto } from './dto/update-parking.dto';
 import { VehicleService } from 'src/vehicle/vehicle.service';
 import { ParkingLotService } from 'src/parking-lot/parking-lot.service';
 import { Repository } from 'typeorm';
 import { Parking } from './entities/parking.entity';
-
 @Injectable()
 export class ParkingService {
   constructor(
@@ -16,9 +14,9 @@ export class ParkingService {
 
   async registryEntry(createParkingDto: CreateParkingDto) {
     try {
-      const { vehicleId, parkingLotId, vehicleType } = createParkingDto;
-      const vehicle = await this.vehicleService.findOne(+vehicleId);
-      const parkingLot = this.parkingLotService.findOne(+parkingLotId);
+      const { vehicleId, id, vehicleType } = createParkingDto;
+      const parkingLot = this.parkingLotService.findOne(id);
+      const vehicle = this.vehicleService.findOne(+vehicleId);
 
       const entry = this.parkingRepository.create({
         vehicle,
@@ -35,5 +33,11 @@ export class ParkingService {
 
   async registryExit(id: string) {
     const exit = await this.parkingRepository.findOneByOrFail({ id: +id });
+    if (exit.dateTimeExit) {
+      console.error('Vehicle Exit Already been registered');
+      throw new Error();
+    }
+    exit.dateTimeExit = new Date();
+    return await this.parkingRepository.save(exit);
   }
 }
